@@ -1,0 +1,104 @@
+{
+  "script_purpose": "Compact objective-level project summary and status checker.",
+  "pipeline_invoked": false,
+  "pipeline_summary": {
+    "started_at_utc": "2026-04-09T17:06:58.722817+00:00",
+    "pipeline_mode": "single_end_to_end",
+    "stages": {
+      "stage_a": {
+        "status": "completed"
+      },
+      "stage_b": {
+        "status": "completed"
+      }
+    },
+    "status": "completed",
+    "finished_at_utc": "2026-04-09T17:10:19.712849+00:00"
+  },
+  "overall_status": "completed",
+  "components": [
+    {
+      "name": "component_1_data_preparation",
+      "description": "Prepare unilateral pilot cohort from workbook + dictionary with holdout handling.",
+      "status": "completed",
+      "required_count": 4,
+      "missing_outputs": []
+    },
+    {
+      "name": "component_2_feature_importance",
+      "description": "Train RF models and generate feature-importance outputs for four scoring targets.",
+      "status": "completed",
+      "required_count": 7,
+      "missing_outputs": []
+    },
+    {
+      "name": "component_3_ai_composite_scoring",
+      "description": "Build AI composite score model from cross-target dominant features.",
+      "status": "completed",
+      "required_count": 5,
+      "missing_outputs": []
+    },
+    {
+      "name": "component_4_ai_vs_ips_agreement",
+      "description": "Quantify AI composite vs IPS relationship using scatter and Bland-Altman artifacts.",
+      "status": "completed",
+      "required_count": 3,
+      "missing_outputs": []
+    }
+  ],
+  "task_a_metrics": {
+    "rows_total": 119,
+    "rows_pilot": 99,
+    "rows_holdout": 20,
+    "rows_bilateral": 6,
+    "targets_completed": [
+      "mhiss_total",
+      "attha_type",
+      "mues_score",
+      "strick_max"
+    ],
+    "quick_model_gate": {
+      "baseline_r2": -0.1519686897687833,
+      "baseline_mae": 35.80696202531645,
+      "baseline_rmse": 42.025169570431125,
+      "rf_r2": 0.043604360763027095,
+      "rf_mae": 30.0467447005772,
+      "rf_rmse": 38.291989441582714
+    }
+  },
+  "task_b_metrics": {
+    "rows_used": 99,
+    "best_model": "Ridge",
+    "best_model_test_r2": 0.3284596232890864,
+    "best_model_test_mae": 6.380839489853981,
+    "selected_feature_count": 12,
+    "selected_features": [
+      "time_injury_to_ed_abx_hrs",
+      "age",
+      "time_to_debride_hrs",
+      "nail_bed_damage_digits",
+      "hand_skin_loss_volar",
+      "lig_injury_type_d1",
+      "mechanism",
+      "fx_type_d4",
+      "fdp_injured_d3",
+      "fx_type_d1",
+      "open_fracture",
+      "skin_loss_dorsum_d1"
+    ]
+  },
+  "ai_vs_ips_metrics": {
+    "n": 99,
+    "mean_ai": 12.30628626330647,
+    "mean_ips": 19.99848484848485,
+    "mean_diff_ai_minus_ips": -7.692198585178378,
+    "median_diff_ai_minus_ips": -8.188759671963334,
+    "mae": 14.278317142572513,
+    "rmse": 18.277437411769654,
+    "spearman_ai_vs_ips": 0.3327268177944064,
+    "loa_lower": -40.35428267356258,
+    "loa_upper": 24.969885503205827,
+    "within_5_pct": 0.21212121212121213,
+    "within_10_pct": 0.45454545454545453
+  }
+}

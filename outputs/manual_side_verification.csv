@@ -1,0 +1,11 @@
+patient_id,selected_side,dominant_hand_label,machine_injured_hand_label,human_injured_hand_label,selected_side_positive_signal_count,opposite_side_positive_signal_count,open_fracture,mhiss_total,attha_type,mues_score,strick_max
+2794659,Left,Right,Left,Non-Dominant,1,0,0,10,1,1,0
+4003779,Right,Right,Right,Dominant,10,0,1,0,3,1,9
+4003784,Left,Right,Left,Non-Dominant,1,0,0,20,1,1,0
+4005022,Right,Right,Right,Dominant,7,0,1,0,2,0,3
+4005042,Left,Right,Left,Non-Dominant,11,0,1,68,2,1,0
+3535030,Left,Right,Left,Non-Dominant,2,0,0,40,2,0,0
+4007045,Left,Right,Left,Non-Dominant,67,0,1,412,3,2,14
+3408038,Right,Right,Right,Dominant,1,0,1,0,1,2,0
+4010694,Right,Right,Right,Dominant,2,0,0,40,1,2,0
+4011186,Left,Right,Left,Non-Dominant,3,0,0,12,1,1,0

@@ -1,0 +1,5 @@
+column,allowed_min,allowed_max,observed_min,observed_max,below_min_count,above_max_count
+age,1.0,100.0,12.0,75.0,0,0
+rbs_mg_dl,40.0,600.0,,,0,0
+time_injury_to_ed_abx_hrs,0.0,168.0,0.0,23.0,0,0
+time_to_debride_hrs,0.0,168.0,1.0,24.0,0,0

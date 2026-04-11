@@ -1,0 +1,36 @@
+{
+  "rows_used": 99,
+  "selected_feature_count": 12,
+  "selected_features": [
+    "time_injury_to_ed_abx_hrs",
+    "age",
+    "time_to_debride_hrs",
+    "nail_bed_damage_digits",
+    "hand_skin_loss_volar",
+    "lig_injury_type_d1",
+    "mechanism",
+    "fx_type_d4",
+    "fdp_injured_d3",
+    "fx_type_d1",
+    "open_fracture",
+    "skin_loss_dorsum_d1"
+  ],
+  "best_model": "Ridge",
+  "best_model_test_r2": 0.3284596232890864,
+  "best_model_test_mae": 6.380839489853981,
+  "spearman_test_vs_scores": {
+    "mhiss_total": 0.2809614549981342,
+    "attha_score": 0.2824858256368255,
+    "mues_score": 0.4589073264616123,
+    "strick_max": 0.35201486839813273
+  },
+  "files": {
+    "B1": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B1_model_comparison.csv",
+    "B2": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B2_best_model.pkl",
+    "B3": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B3_feature_weights.csv",
+    "B4": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B4_predictions_pilot.csv",
+    "B5": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B5_scatter_ai_vs_ips.png",
+    "B6": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B6_bland_altman_ai_vs_ips.png",
+    "B7": "/Users/jeevithg/Downloads/Feature SHAP/outputs/task_b/B7_task_b_summary.md"
+  }
+}
