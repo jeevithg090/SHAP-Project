@@ -155,3 +155,22 @@ def test_empty_pilot_raises() -> None:
     machine = pd.DataFrame([_machine_row(human_side_involved="Bilateral")])
     with pytest.raises(DataInputError):
         build_pilot_and_holdout_datasets(machine, ["skin_d1_l", "skin_d1_r"], [])
+
+
+def test_unreadable_inputs_raise_data_input_error(tmp_path) -> None:
+    import pandas as pd
+    import pytest
+
+    from hand_injury_ai.dataset import DataInputError, load_dictionary, load_machine_block
+
+    not_excel = tmp_path / "not_excel.xlsx"
+    not_excel.write_text("this is not a workbook", encoding="utf-8")
+    with pytest.raises(DataInputError, match="Could not read source workbook"):
+        load_machine_block(not_excel)
+
+    wrong_sheet = tmp_path / "wrong_sheet.xlsx"
+    pd.DataFrame({"Column Name": ["age"], "Layer": ["input"]}).to_excel(
+        wrong_sheet, sheet_name="Sheet1", index=False
+    )
+    with pytest.raises(DataInputError, match="no sheet named 'Data Dictionary'"):
+        load_dictionary(wrong_sheet)
