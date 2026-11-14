@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import logging
 import re
+import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -135,10 +136,26 @@ def _require_file(path: Path, description: str, env_var: str) -> None:
         )
 
 
+def _read_excel(path: Path, description: str, sheet_name: str | int = 0) -> pd.DataFrame:
+    """Read an Excel sheet, turning unreadable files and missing sheets into clear errors."""
+    try:
+        return pd.read_excel(path, sheet_name=sheet_name)
+    except ValueError as exc:
+        if isinstance(sheet_name, str) and sheet_name in str(exc):
+            raise DataInputError(
+                f"{description} '{path}' has no sheet named '{sheet_name}'."
+            ) from exc
+        raise DataInputError(f"Could not read {description.lower()} '{path}': {exc}") from exc
+    except (OSError, zipfile.BadZipFile) as exc:
+        raise DataInputError(
+            f"Could not read {description.lower()} '{path}' as an Excel workbook: {exc}"
+        ) from exc
+
+
 def load_machine_block(workbook_path: Path, patient_id_salt: str | None = None) -> pd.DataFrame:
     """Return the machine-readable block of the workbook with pseudonymised IDs."""
     _require_file(workbook_path, "Source workbook", "HAND_INJURY_WORKBOOK_PATH")
-    full_df = pd.read_excel(workbook_path)
+    full_df = _read_excel(workbook_path, "Source workbook")
     canonical_columns = [canonicalize_name(column) for column in full_df.columns]
     if "patient_id" not in canonical_columns:
         raise DataInputError(
@@ -169,7 +186,7 @@ def load_machine_block(workbook_path: Path, patient_id_salt: str | None = None) 
 def load_dictionary(dictionary_path: Path) -> pd.DataFrame:
     """Load the "Data Dictionary" sheet with canonical column names."""
     _require_file(dictionary_path, "Data dictionary", "HAND_INJURY_DATA_DICTIONARY_PATH")
-    dictionary_df = pd.read_excel(dictionary_path, sheet_name="Data Dictionary")
+    dictionary_df = _read_excel(dictionary_path, "Data dictionary", sheet_name="Data Dictionary")
     dictionary_df.columns = [canonicalize_name(column) for column in dictionary_df.columns]
     missing = {"column_name", "layer"} - set(dictionary_df.columns)
     if missing:
