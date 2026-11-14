@@ -61,12 +61,12 @@ def run_full_pipeline(paths: Paths) -> int:
         "stages": stages,
     }
     try:
-        logger.info("Step 1/2: building dataset + feature importance outputs")
+        logger.info("Step 1/2 (Task A): cohort, EDA and SHAP feature rankings")
         task_a.run(paths)
         check_outputs(required_outputs_stage_a(paths), "Stage A")
         stages["stage_a"] = {"status": "completed"}
 
-        logger.info("Step 2/2: building AI composite outputs")
+        logger.info("Step 2/2 (Task B): AI composite model comparison")
         task_b.run(paths)
         check_outputs(required_outputs_stage_b(paths), "Stage B")
         stages["stage_b"] = {"status": "completed"}

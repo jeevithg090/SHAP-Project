@@ -39,3 +39,6 @@ htmlcov/
 Thumbs.db
 .idea/
 .vscode/
+
+# --- Synthetic demo run (hand-injury-ai demo) ---
+demo/
