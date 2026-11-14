@@ -416,7 +416,13 @@ def build_pilot_and_holdout_datasets(
         "holdout_rows": len(holdout_df),
         "bilateral_rows": int(holdout_reasons.str.contains("bilateral_case").sum()),
     }
-    logger.info("Cohort built: %s", counts)
+    logger.info(
+        "Cohort built: %d rows -> %d unilateral pilot, %d holdout (%d bilateral)",
+        counts["total_rows"],
+        counts["pilot_rows"],
+        counts["holdout_rows"],
+        counts["bilateral_rows"],
+    )
     return CohortResult(
         pilot=pilot_df,
         holdout=holdout_df,

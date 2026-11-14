@@ -581,7 +581,13 @@ def run(paths: Paths) -> dict[str, object]:
                 ),
             },
         )
-        raise QuickModelGateError("Quick MHISS model failed the gate for full Task A execution.")
+        raise QuickModelGateError(
+            "Quick MHISS sanity check failed: Random Forest R² "
+            f"{quick_metrics['rf_r2']:.3f} vs mean-baseline R² {quick_metrics['baseline_r2']:.3f} "
+            "(needs to be positive and above the baseline). Full Task A was not run. "
+            "Check the injured-side columns and the data dictionary's input/target layers; "
+            f"details in {paths.task_a_summary}."
+        )
 
     performance_df, overlap = run_task_a_models(pilot_df, type_map, paths.task_a_dir)
     summary: dict[str, object] = {
