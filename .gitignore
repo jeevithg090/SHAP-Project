@@ -1,0 +1,41 @@
+# --- Patient data: never commit (contains or derives from identifiable records) ---
+data/*
+!data/README.md
+*.xlsx
+*.xls
+*.csv
+!docs/results/*.csv
+
+# --- Generated pipeline outputs ---
+outputs/
+reports/
+*.pkl
+*.joblib
+
+# --- Local configuration / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
