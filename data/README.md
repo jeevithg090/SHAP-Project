@@ -14,3 +14,7 @@ Only the machine-readable block is loaded. Three answers from the form block
 (`Side Involved`, `Injured Hand`, `Dominance`) are copied in to cross-check the
 injured side, and `patient_id` is replaced by a pseudonym before anything is written
 to `outputs/`.
+
+To see a valid example of both files without touching real data, run
+`hand-injury-ai demo --no-run`: it writes a fully fictional workbook and dictionary
+with the same layout to `demo/data/` (also git-ignored).
